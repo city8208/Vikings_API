@@ -5,8 +5,9 @@ curl -sL https://deb.nodesource.com/setup_11.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt-get install nodejs -y
 sudo apt-get install build-essential -y
+sudo apt-get install fswebcam -y
 sudo apt-get upgrade -y
-sudo apt-get install fswebcam
+
 
 ```
 
@@ -28,6 +29,7 @@ npm install serialport --unsafe-perm
 npm install config --unsafe-perm
 npm install express --unsafe-perm
 npm install node-webcam --unsafe-perm
+
 ```
 
 Step4：Go Website Folder to restart Step2 and Step3 again
@@ -44,3 +46,15 @@ Precautions：If you want to close this mode.Just stop it by this：
 ```
 sudo killall -9 node
 ```
+
+
+API Input
+```
+API_type :
+1.JSON(Connect & Creat Data)(2018/12/2)
+2.Table(Connect & Creat Table html)(2018/12/2)
+3.Camera(Serial Port & Response image)(2018/12/2)
+4.Serialport(Connect Control panel & Get Response)(2018/12/2)
+
+```
+
