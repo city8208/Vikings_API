@@ -10,6 +10,7 @@ sudo apt-get install fswebcam
 
 ```
 
+
 Step2：install config/node-gyp
 ```
 npm install -g config

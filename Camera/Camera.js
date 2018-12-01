@@ -1,12 +1,13 @@
-function showCamera() {
 //Available in nodejs
+Main = require('../Vikinss_API.js');
 
-    var NodeWebcam = require("node-webcam");
+function callCamera(Port) {
+    var NodeWebcam = require( "node-webcam" );
 
 
 //Default options
 
-    var opts = {
+    var defaultopts = {
 
         //Picture related
 
@@ -15,7 +16,6 @@ function showCamera() {
         height: 720,
 
         quality: 100,
-
 
         //Delay to take shot
 
@@ -51,47 +51,53 @@ function showCamera() {
         verbose: false
 
     };
-
+    var opts =defaultopts;
 
 //Creates webcam instance
+    if(Port != undefined){
+        opts['device'] = Port;
+    }
 
-    var Webcam = NodeWebcam.create(opts);
+    var Webcam = NodeWebcam.create( opts );
+    Webcam.list( function( list ) {
+        if(Port != undefined){
+            //Will automatically append location output type
+            Webcam.capture( Port.split("/dev/")[1], function( err, data ) {
+                if(!err){
+                    var opts = {
+                        callbackReturn: "base64"
+                    };
+                    NodeWebcam.capture( Port.split("/dev/")[1], opts, function( err, data ) {
+                        if(!err){
+                            var image = "<br>"+Port.split("/dev/")[1]+"<br><img src='" + data + "'>";
+                        }else{
+                            image ="Error:"+err;
+                        }
+                        Main.printResponse(image+"$Close");
+                    });
+                }
+            } );
+        }else{
+            Port = list[0];
+            image = "Error:None Port,You can use list of :<br>";
+            console.log('Error:None Port,You can use list of :');
+            for(listi=0;listi<list.length;listi++){
+                if(list[listi].indexOf(".jpg") == -1){
+                    image += list[listi]+'<br>';
+                    console.log(list[listi]);
+                }
+            }
 
-
-//Will automatically append location output type
-
-    Webcam.capture("test_picture", function (err, data) {
+            Main.printResponse(image+"$Close");
+        }
     });
 
 
-//Also available for quick use
-
-    NodeWebcam.capture("test_picture", opts, function (err, data) {
-
-    });
 
 
-//Get list of cameras
-
-    Webcam.list(function (list) {
-
-        //Use another device
-
-        var anotherCam = NodeWebcam.create({device: list[0]});
-
-    });
 
 //Return type with base 64 image
 
-    var opts = {
-        callbackReturn: "base64"
-    };
-
-    NodeWebcam.capture("test_picture", opts, function (err, data) {
-        var image = "<img src='" + data + "'>";
-        return image;
-    });
 
 }
-
-module.exports.showCamera = showCamera;
+module.exports.callCamera = callCamera;

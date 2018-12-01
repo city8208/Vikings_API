@@ -47,128 +47,28 @@ if(argv.port){
             //////////////GET
             var params = url.parse(req.url, true).query;
             if(req.url != "/" && params.API_type != undefined  && params.System != undefined ){
-                /////////////GET
+                /////////////Print Response Code
+                function printResponse(PrintResponse) {
+                    if(PrintResponse != undefined ){
+                        if(PrintResponse.length > 10){
+                            res.write('<br>serialPort@ Vikinss$');
+                        }
+                        res.write(PrintResponse.split("$Close")[0]);
+                        if(PrintResponse.indexOf("$Close") != -1){
+                            res.end();
+                        }
+                    }
+                }
+                module.exports.printResponse = printResponse;
                 ///////////////////////Check GET input//////////
                 if(params.API_type  == "JSON"){
                     res.write("Success "+params.API_type+" " + params.System);
                 }else if(params.API_type  == "Table"){
                     res.write("Success "+params.API_type+" " + params.System);
                 }else if(params.API_type  == "Camera") {
-                    //if(params.Port != undefined){
-                        res.write("Success "+params.API_type+" " + params.System);
-//Available in nodejs
-
-                    var NodeWebcam = require( "node-webcam" );
-
-
-//Default options
-
-                    var opts = {
-
-                        //Picture related
-
-                        width: 1280,
-
-                        height: 720,
-
-                        quality: 100,
-
-
-                        //Delay to take shot
-
-                        delay: 0,
-
-
-                        //Save shots in memory
-
-                        saveShots: true,
-
-
-                        // [jpeg, png] support varies
-                        // Webcam.OutputTypes
-
-                        output: "jpeg",
-
-
-                        //Which camera to use
-                        //Use Webcam.list() for results
-                        //false for default device
-
-                        device: false,
-
-
-                        // [location, buffer, base64]
-                        // Webcam.CallbackReturnTypes
-
-                        callbackReturn: "location",
-
-
-                        //Logging
-
-                        verbose: false
-
-                    };
-
-
-//Creates webcam instance
-
-                    var Webcam = NodeWebcam.create( opts );
-
-
-//Will automatically append location output type
-
-                    Webcam.capture( "test_picture", function( err, data ) {} );
-
-
-//Also available for quick use
-
-                    NodeWebcam.capture( "test_picture", opts, function( err, data ) {
-                        if(err){
-                            res.write("Something Error :"+err);
-                        }
-                    });
-
-
-//Get list of cameras
-
-                    Webcam.list( function( list ) {
-
-                        //Use another device
-
-                        var anotherCam = NodeWebcam.create( { device: list[ 0 ] } );
-
-                    });
-
-//Return type with base 64 image
-
-                    var opts = {
-                        callbackReturn: "base64"
-                    };
-                    NodeWebcam.capture( "test_picture", opts, function( err, data ) {
-                        if(err){
-                            res.write("<br>Something Error :"+err);
-                        }else{
-                            var image = "<img src='" + data + "'>";
-                            res.write("<br>"+image);
-                        }
-                        res.end();
-                    });
-
-                    //}
-
+                    PrintCamera = require('./Camera/Camera.js');
+                    PrintCamera.callCamera(params.Port);
                 }else if(params.API_type  == "Serialport") {
-                    function printResponse(PrintResponse) {
-                        if(PrintResponse != undefined ){
-                            if(PrintResponse.length > 10){
-                                res.write('<br>serialPort@ Vikinss$');
-                            }
-                            res.write(PrintResponse.split("port close")[0]);
-                            if(PrintResponse.indexOf("port close") != -1){
-                                res.end();
-                            }
-                        }
-                    }
-                    module.exports.printResponse = printResponse;
                     ////檢測Port狀態
                     if(params.Port != undefined){
                         console.log("New task to Port:"+params.Port+"...");

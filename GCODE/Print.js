@@ -115,10 +115,10 @@ function printerRead(){
 function printerClose(type){
     sp.close(function (err) {
         if(err){
-            consoleAndPrint('port close'+err.message,false);
+            consoleAndPrint('$Close'+err.message,false);
         }else{
             if(type == true){
-                //consoleAndPrint('port close');
+                //consoleAndPrint('$Close');
             }
         }
     });
@@ -126,7 +126,7 @@ function printerClose(type){
 function consoleAndPrint(printText,state){
     console.log(printText);
     if(state){
-        Main.printResponse(printText+"port close");
+        Main.printResponse(printText+"$Close");
     }else{
         Main.printResponse(printText);
     }
