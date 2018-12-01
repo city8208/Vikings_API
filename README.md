@@ -56,5 +56,12 @@ API_type :
 3.Camera(Serial Port & Response image)(2018/12/2)
 4.Serialport(Connect Control panel & Get Response)(2018/12/2)
 
+System :
+1.ASP(window server)
+2.PHP(ubuntu)
+
+Port :
+1.Any serialport like /dev/video0 , /dev/ttyUSB0  
+
 ```
 
