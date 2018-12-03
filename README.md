@@ -49,7 +49,7 @@ sudo killall -9 node
 
 
 API Input
-```
+
 API_type :
 1.JSON(Connect & Creat Data)(2018/12/2)
 | Coming Soon |
@@ -71,6 +71,7 @@ API_type :
 | Baudrate  | 250000(MKS GEN) |
 | GcodeUrl  | M17,G1 X25 F3000....(Gcode) |
 
+```
 System :
 1.ASP(window server)
 2.PHP(ubuntu)
