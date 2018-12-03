@@ -1,4 +1,5 @@
 //Version 20181203 V 4
+
 var serialport = require("serialport"),
     fs = require('fs'),
     ///argv = require('optimist').argv,
@@ -57,7 +58,7 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
             });
         }else{
             printCommands = GCODE.deconstruct(settings.printFile);
-            //console.log(printCommands);
+            console.log("Code Send : "+printCommands);
         }
         printPosition = 0;
         return printerCommand(GCODE.reconstruct(printCommands[printPosition]));
@@ -133,6 +134,7 @@ function consoleAndPrint(printText,state){
         Main.printResponse(printText.toString());
     }
 }
+
 //process.on('exit', function() {
 //    console.log("Issuing Stop Command");
 //    printerCommand("M112");
