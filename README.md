@@ -52,9 +52,24 @@ API Input
 ```
 API_type :
 1.JSON(Connect & Creat Data)(2018/12/2)
+| Coming Soon |
+| ------------- |
 2.Table(Connect & Creat Table html)(2018/12/2)
+| Coming Soon |
+| ------------- |
+
 3.Camera(Serial Port & Response image)(2018/12/2)
+| Parameter  | Description |
+| ------------- | ------------- |
+| Port  | /dev/video0,video1,video2... |
+
+
 4.Serialport(Connect Control panel & Get Response)(2018/12/2)
+| Parameter  | Description |
+| ------------- | ------------- |
+| Port  | /dev/video0,video1,video2... |
+| Baudrate  | 250000(MKS GEN) |
+| GcodeUrl  | M17,G1 X25 F3000....(Gcode) |
 
 System :
 1.ASP(window server)
