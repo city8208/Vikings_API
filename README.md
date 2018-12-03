@@ -65,6 +65,12 @@ API_type :
 
 
 4.Serialport(Connect Control panel & Get Response)(2018/12/2)
+| Command | Description |
+| --- | --- |
+| Port  | /dev/video0,video1,video2... |
+| Baudrate  | 250000(MKS GEN) |
+| GcodeUrl  | M17,G1 X25 F3000....(Gcode) |
+
 | Parameter  | Description |
 | ------------- | ------------- |
 | Port  | /dev/video0,video1,video2... |
@@ -84,7 +90,4 @@ http://your.webUrl:3000/?API_type=Serialport&System=PHP
 http://your.webUrl:3000/?API_type=Camera&System=PHP&Port=/dev/video1
 
 ```
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
+
