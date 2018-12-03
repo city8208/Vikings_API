@@ -63,10 +63,7 @@ System :
 Port :
 1.Any serialport like /dev/video0 , /dev/ttyUSB0  
 
-```
-
 Example:
-```
 http://your.webUrl:3000/?API_type=Serialport&System=PHP
 http://your.webUrl:3000/?API_type=Camera&System=PHP&Port=/dev/video1
 
