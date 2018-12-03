@@ -1,4 +1,4 @@
-//Version 20181115 V 3
+//Version 20181203 V 4
 
 ///////////////////Set Web POST/GET
 var http = require('http'),
@@ -112,7 +112,7 @@ if(argv.port){
                                 '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
                                 '    <title>Vikinss</title>\n' +
                                 '    <!-- Tocas UI：CSS 與元件 -->\n' +
-                                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script><script src="http://'+req.headers.host.split(":")[0]+'/3dplus/Vikinss_API/GCODE/js/PrintClient.js"></script>\n' +
+                                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script><script src="http://'+req.headers.host.split(":")[0]+'/Vikinss_API/GCODE/js/PrintClient.js"></script>\n' +
                                 '</head>\n' +
                                 '<body onload="onload();">\n' +
                                 '<div class="ts menu" style="height: 80px;">\n' +
