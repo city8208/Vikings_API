@@ -26,7 +26,7 @@ function deconstruct(code){
 
 
             while(lL < thisLine.length){
-                console.log("thisLine:"+lL);
+                ///console.log("thisLine:"+lL);
                 if(thisLine[lL].indexOf('E') != -1){
                     var tempChunk = parseFloat(thisLine[lL].slice(thisLine[lL].indexOf('E')).split('E')[1], 10);
     
@@ -52,10 +52,9 @@ function deconstruct(code){
 
                     printObject.feed = fChunk;
 
-                } else if(thisLine[lL].indexOf('M') != -1){
-                    var mChunk = parseFloat(thisLine[lL].slice(thisLine[lL].indexOf('M')).split('M')[1], 10);
-                    console.log("True");
-                    printObject.m = mChunk;
+                //} else if(thisLine[lL].indexOf('M') != -1){
+                //    var mChunk = parseFloat(thisLine[lL].slice(thisLine[lL].indexOf('M')).split('M')[1], 10);
+                //    printObject.m = mChunk;
                 } else {
 
                     if(thisLine[lL] !== " " && thisLine[lL] !== ""){
@@ -105,9 +104,9 @@ function reconstruct(command){
         commands.push("F" + command.feed * settings.speedMultiplier);
     }
 
-    if(command.m){
-        commands.push("M" + command.m);
-    }
+    //if(command.m){
+    //    commands.push("M" + command.m);
+    //}
 
     if(command.extrusion){
         

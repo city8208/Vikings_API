@@ -22,7 +22,7 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
         settings.serialPort = Port;
     } else {
         settings.serialPort = undefined;
-        consoleAndPrint("No serial port passed. Exiting",false);
+        consoleAndPrint(" No serial port passed. Exiting",true);
         //process.exit(1);
     }
     if(baudrate){
@@ -30,7 +30,7 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
         settings.baudrate = baudrate;
     } else {
         settings.baudrate = undefined;
-        consoleAndPrint("No Baudrate passed for serial port. Exiting",false);
+        consoleAndPrint(" No Baudrate passed for serial port. Exiting",true);
     }
 
     if(GcodeUrl){
@@ -41,7 +41,7 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
     }
     //Optional :: The multiplying factor that affects the travelling speed of the printhead
     if(speed){
-        consoleAndPrint("Speed multiplying factor:" + speed,false);
+        consoleAndPrint(" Speed multiplying factor:" + speed,false);
         GCODE.settings.speedMultiplier = speed;
     }
 
@@ -125,11 +125,11 @@ function printerClose(type){
     });
 }
 function consoleAndPrint(printText,state){
-    console.log(printText);
+    //console.log(printText);
     if(state){
-        Main.printResponse(printText+"$Close");
+        Main.printResponse(printText.toString()+"$Close");
     }else{
-        Main.printResponse(printText);
+        Main.printResponse(printText.toString());
     }
 }
 //process.on('exit', function() {
