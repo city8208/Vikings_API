@@ -29,7 +29,7 @@ npm install serialport --unsafe-perm
 npm install config --unsafe-perm
 npm install express --unsafe-perm
 npm install node-webcam --unsafe-perm
-npm request-ip --unsafe-perm
+npm install request-ip --unsafe-perm
 ```
 
 ####  Step4：Go Website Folder to restart Step2 and Step3 again
