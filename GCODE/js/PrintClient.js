@@ -37,7 +37,7 @@ function printGcode(portChoice,Gcode,baudrate) {
     }
     CreatFileSubmithttp=GetCreatFilettpObject()
     var xhr = new XMLHttpRequest();
-    if (CreatFileSubmithttp==null)
+    if (CreatFileSubmithttp==null) 
     {
         alert ("Browser does not support HTTP Request")
         return
