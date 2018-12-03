@@ -59,6 +59,23 @@ if(argv.port){
                         }
                     }
                 }
+                function GetIP() {
+                    if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+                    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+                    xmlhttp.open("GET","http://api.hostip.info/get_html.php",false);
+                    xmlhttp.send();
+
+                    hostipInfo = xmlhttp.responseText.split("\n");
+
+                    for (i=0; hostipInfo.length >= i; i++) {
+                        ipAddress = hostipInfo[i].split(":");
+                        if ( ipAddress[0] == "IP" ) return ipAddress[1];
+                    }
+
+                    return false;
+                }
+
                 module.exports.printResponse = printResponse;
                 ///////////////////////Check GET input//////////
                 if(params.API_type  == "JSON"){
@@ -71,11 +88,14 @@ if(argv.port){
                 }else if(params.API_type  == "Serialport") {
                     ////檢測Port狀態
                     if(params.Port != undefined){
-                        console.log("New task to Port:"+params.Port+"...");
+                        requestIp = require('request-ip');// inside middleware handler
+                        var IP = requestIp.getClientIp(req);
+                        console.log("New task to Port:"+params.Port+"...From '"+IP+"'");
                         ///////////////////Set SerialPort
+                        PrintCode = require('./GCODE/Print.js');
                         //res.write("New task to Port:  "+params.Port+"<br>");
                         console.log('Baudrate:'+params.baudrate);
-                        PrintCode = require('./GCODE/Print.js');
+
                         var PrintResponse ="";
                         if(params.GcodeUrl == undefined || params.GcodeUrl == ''){
                             PrintResponse = PrintCode.printGcode(params.Port,'',params.baudrate,params.speed);
@@ -112,7 +132,7 @@ if(argv.port){
                                 '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
                                 '    <title>Vikinss</title>\n' +
                                 '    <!-- Tocas UI：CSS 與元件 -->\n' +
-                                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script><script src="http://'+req.headers.host.split(":")[0]+'/Vikinss_API/GCODE/js/PrintClient.js"></script>\n' +
+                                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script><script src="http://'+req.headers.host.split(":")[0]+'/3dplus/Vikinss_API/GCODE/js/PrintClient.js"></script>\n' +
                                 '</head>\n' +
                                 '<body onload="onload();">\n' +
                                 '<div class="ts menu" style="height: 80px;">\n' +
