@@ -1,3 +1,4 @@
+//Version 20181203 V 4
 var serialport = require("serialport"),
     fs = require('fs'),
     ///argv = require('optimist').argv,
