@@ -65,3 +65,10 @@ Port :
 
 ```
 
+Example:
+```
+http://your.webUrl:3000/?API_type=Serialport&System=PHP
+http://your.webUrl:3000/?API_type=Camera&System=PHP&Port=/dev/video1
+
+```
+
