@@ -56,6 +56,7 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
             });
         }else{
             printCommands = GCODE.deconstruct(settings.printFile);
+            //console.log(printCommands);
         }
         printPosition = 0;
         return printerCommand(GCODE.reconstruct(printCommands[printPosition]));

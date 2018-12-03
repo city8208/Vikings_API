@@ -9,7 +9,7 @@ function deconstruct(code){
     var printData;
 
     printData = code.split('\n');
-
+    //console.log(code);
     var newData = [];
 
     var cS = 0;
@@ -18,16 +18,15 @@ function deconstruct(code){
 
         var thisLine = printData[cS].split(";")[0].split(' ');
 
-        if(thisLine.length > 1){
+        if(thisLine.length >= 1){
             var lL = 1;
-
             var printObject = {};
             printObject.commandCode = thisLine[0];
-            printObject.other = []
+            printObject.other = [];
 
 
             while(lL < thisLine.length){
-
+                console.log("thisLine:"+lL);
                 if(thisLine[lL].indexOf('E') != -1){
                     var tempChunk = parseFloat(thisLine[lL].slice(thisLine[lL].indexOf('E')).split('E')[1], 10);
     
@@ -55,7 +54,7 @@ function deconstruct(code){
 
                 } else if(thisLine[lL].indexOf('M') != -1){
                     var mChunk = parseFloat(thisLine[lL].slice(thisLine[lL].indexOf('M')).split('M')[1], 10);
-
+                    console.log("True");
                     printObject.m = mChunk;
                 } else {
 
@@ -107,7 +106,7 @@ function reconstruct(command){
     }
 
     if(command.m){
-        commands.push("M" + command.feed * settings.speedMultiplier);
+        commands.push("M" + command.m);
     }
 
     if(command.extrusion){
