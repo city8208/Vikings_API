@@ -1,3 +1,4 @@
+//Version 20181203 V 4
 var settings = {
     extrusionMultiplier : 20,
     heightMulitplier : 1,
