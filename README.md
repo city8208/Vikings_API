@@ -48,7 +48,7 @@ sudo killall -9 node
 ```
 
 
-API Input
+#API Input
 
 API_type :
 1.JSON(Connect & Creat Data)(2018/12/2)
@@ -82,8 +82,12 @@ System :
 2.PHP(ubuntu)
 
 Example:
-http://your.webUrl:3000/?API_type=Serialport&System=PHP
 http://your.webUrl:3000/?API_type=Camera&System=PHP&Port=/dev/video1
+http://your.webUrl:3000/?API_type=Serialport&System=PHP&Port=&GcodeUrl=M17&baudrate=250000
+
+if you want to open control panel:
+http://your.webUrl:3000/?API_type=Serialport&System=PHP
+
 
 ```
 
