@@ -7,8 +7,6 @@ sudo apt-get install nodejs -y
 sudo apt-get install build-essential -y
 sudo apt-get install fswebcam -y
 sudo apt-get upgrade -y
-
-
 ```
 
 
@@ -16,7 +14,6 @@ sudo apt-get upgrade -y
 ```
 npm install -g config
 npm install -g node-gyp
-
 ```
 
 ####  Step3：install Newest npm(11.x) and serialport 
@@ -30,6 +27,7 @@ npm install config --unsafe-perm
 npm install express --unsafe-perm
 npm install node-webcam --unsafe-perm
 npm install request-ip --unsafe-perm
+npm install wifi-location --unsafe-perm
 ```
 
 ####  Step4：Go Website Folder to restart Step2 and Step3 again
@@ -42,11 +40,28 @@ cd Vikings_API
 node Vikings_API.js
 ```
 
-####  Precautions：If you want to close this mode.Just stop it by this：
+####  Precautions.1：If you want to close this mode.Just stop it by this：
 ```
 sudo killall -9 node
 ```
 
+####  Precautions.2：If got error " No 'Access-Control-Allow-Origin' header "：
+Edit this file: ' /etc/apache2/apache2.conf ' and restart Apache2
+```
+<Directory />
+        Options FollowSymLinks
+        AllowOverride None
+        Require all denied
+        Header set Access-Control-Allow-Origin *
+</Directory>
+```
+```
+sudo /etc/init.d/apache2 restart
+```
+#### If restart False,start a2enmod headers
+```
+sudo a2enmod headers
+```
 
 # API Input
 
