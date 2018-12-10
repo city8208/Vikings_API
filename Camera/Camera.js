@@ -1,5 +1,5 @@
 //Available in nodejs
-Main = require('../Vikinss_API.js');
+Main = require('../Vikings_API.js');
 
 function callCamera(Port) {
     var NodeWebcam = require( "node-webcam" );
