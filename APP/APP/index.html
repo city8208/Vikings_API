@@ -1,0 +1,547 @@
+<!-- Version 20181210 V 5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business APP</title>
+    <!-- Tocas UI：CSS 與元件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css">
+    <!-- Tocas JS：模塊與 JavaScript 函式 -->
+    <script src="APIUrl/APP/js/tocas.js"></script>
+    <script src="APIUrl/APP/js/indexJS.js"></script>
+    <link rel="Shortcut Icon" type="APIUrl/APP/image/x-icon" href="APIUrl/APP/image/icon.png"/>
+    <!-- jquery 函式 -->
+    <script type="text/javascript" src="APIUrl/APP/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="APIUrl/APP/js/jquery-migrate-1.2.1.min.js"></script>
+    <!-- slick JS：模塊與 JavaScript 函式 -->
+    <link rel="stylesheet" type="text/css" href="APIUrl/APP/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="APIUrl/APP/slick/slick-theme.css"/>
+    <script type="text/javascript" src="APIUrl/APP/slick/slick.min.js"></script>
+    <!-- SerialPort JS：模塊與 JavaScript 函式 -->
+    <script type="text/javascript" src="APIUrl/GCODE/js/PrintClient.js"></script>
+</head>
+<body id="indexBody" onload="onload();">
+<div class="ts menu" style="height: 80px;">
+    <img class="ts image" src="APIUrl/APP/image/icon.png" style="height: 50%;top: 30%;">
+    <a class="item">
+        <div style="right: 10px;top: 5%;"></div>
+    </a>
+    <div class="header stretched center aligned item">
+        <div class="mobile or tablet only fitted item">
+            <div class="ts fluid borderless basic icon input">
+                <input id="Keyword" type="text" placeholder="Search ...">
+                <div onclick="CallKeyWord();" style="line-height: 5;"><i class="search icon"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="right menu">
+        <a class="item" onclick="callToggle();">
+            <i class="bars icon"></i><div class="ts floating circular label" style="display: none;top: 15px;left: 80%;">9</div>
+            <div class="tablet or large device only">List</div>
+        </a>
+    </div>
+</div>
+<div id="rightTable" class="ts static right sidebar disabled" style="height: auto;width: auto;">
+    <div class="ts vertical big menu">
+        <a id="orderListItem" class="item disabled" onclick="CallCusChoice('Order','seven');" style="display: none">
+            <i class="shopping cart icon"></i> Orders<div id="orderListLabel" class="ts floating circular label" style="display: none">7</div>
+        </a>
+        <a id="BusinessListItem" class="item disabled" onclick="CallCusChoice('Business','eight');" style="display: none">
+            <i class="male icon"></i> Sales Orders<div id="BusinessListLabel" class="ts floating circular label" style="display: none">2</div>
+        </a>
+        <a id="ReplenishmentListItem" class="item disabled" data-tab="nine" data-tab-group="main" onclick="CallUserReplenishment('Replenishment','nine');" style="display: none">
+            <i class="building icon"></i> Delivery Orders<div id="ReplenishmentListLabel" class="ts floating circular label" style="display: none">2</div>
+        </a>
+        <a id="ARListItem" class="item disabled" onclick="CallCusChoice('AR','five');" style="display: none">
+            <i class="phone icon"></i> Receivable<div id="ARListLabel" class="ts floating circular label" style="display: none">2</div>
+        </a>
+        <a id="logBTN" class="item" onclick="ShowLogin();">
+            <i class="sign in alt icon"></i> Login
+        </a>
+    </div>
+</div>
+<div id="AllContent1" data-tab="first" data-tab-group="main" class="ts active bottom attached tab segment" style="height: 100%;">
+    <select id="BillBoardBox" class="ts basic dropdown" style="width: 80%;left: 10%;" disabled="ture">
+        <option>Promotions</option>
+        <option>Launch a Product</option>
+        <option selected="selected">Info</option>
+        <option>Job Posting</option>
+    </select>
+    <div class="mobile or tablet only" style="width: 100%;">
+        <div class="slick mobile-class">
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 1
+                    <div class="sub header">BillBoard_1_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 2
+                    <div class="sub header">BillBoard_2_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 3
+                    <div class="sub header">BillBoard_3_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 4
+                    <div class="sub header">BillBoard_4_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 5
+                    <div class="sub header">BillBoard_5_info</div>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="tablet or large device only" style="width: 85%;left: 7.5%;">
+        <div class="slick PC-class">
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 1
+                    <div class="sub header">BillBoard_1_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 2
+                    <div class="sub header">BillBoard_2_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 3
+                    <div class="sub header">BillBoard_3_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 4
+                    <div class="sub header">BillBoard_4_info</div>
+                </h3>
+            </div>
+            <div class="slide">
+                <h3 class="ts center aligned icon header">
+                    <img class="ts image" src="APIUrl/APP/image/defaultPic.png" style="width: 80%;"><br>BillBoard 5
+                    <div class="sub header">BillBoard_5_info</div>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent2" data-tab="second" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts stackable grid" style="bottom: 20px;width: 80%;text-align: center;left: 10%;">
+        <div id="Cusdefault" class="ts primary card" style="width:100%;display: none;">
+            <div class="content">
+                <div class="header">Customer</div>
+                <div class="description">
+                    <div class="ts form">
+                        <div class="ts mini form">
+                            None Customer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Cus_1" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        <div id="CusName1">402055 - Customer1</div>
+                        <div id="header1"  class="sub header" onclick="CallChoice(1);" style="display: -webkit-inline-box;">2362 Bridge Avenue</div><i class="map marked alt icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Contract：</p><p style="display: inline;">1 Records</p><br>
+                    <p style="display: inline;">Order：</p><p style="color: red;display: inline;">1 Records</p><br>
+                    <p style="display: inline;">Receivable：</p><p style="color: red;display: inline;">1 Records</p>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <img class="ts circular avatar image" src="APIUrl/APP/image/defaultHead.png"> Contact Person：Brayan
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Cus_2" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        <div id="CusName2">57008 - Customer2</div>
+                        <div id="header2" class="sub header" onclick="CallChoice(2);"  style="display: -webkit-inline-box;">1861 Water Street</div><i class="map marked alt icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Contract：</p><p style="display: inline;">1 Records</p><br>
+                    <p style="display: inline;">Order：</p><p style="color: red;display: inline;">3 Records</p><br>
+                    <p style="display: inline;">Receivable：</p><p style="color: greenyellow;display: inline;">0 Records</p>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <img class="ts circular avatar image" src="APIUrl/APP/image/defaultHead.png"> Contact Person：Rylee
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Cus_3" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        <div id="CusName3">358001 - Customer3</div>
+                        <div id="header3" class="sub header" onclick="CallChoice(3);"  style="display: -webkit-inline-box;">1431 Fantages Way</div><i class="map marked alt icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Contract：</p><p style="display: inline;">1 Records</p><br>
+                    <p style="display: inline;">Order：</p><p style="color: red;display: inline;">2 Records</p><br>
+                    <p style="display: inline;">Receivable：</p><p style="color: greenyellow;display: inline;">0 Records</p>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <img class="ts circular avatar image" src="APIUrl/APP/image/defaultHead.png"> Contact Person：Finn
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Cus_4" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        <div id="CusName4">358002 - Customer4</div>
+                        <div id="header4" class="sub header" onclick="CallChoice(4);"  style="display: -webkit-inline-box;">2512 Laurel Lee</div><i class="map marked alt icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Contract：</p><p style="display: inline;">1 Records</p><br>
+                    <p style="display: inline;">Order：</p><p style="color: red;display: inline;">5 Records</p><br>
+                    <p style="display: inline;">Receivable：</p><p style="color: red;display: inline;">2 Records</p>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <img class="ts circular avatar image" src="APIUrl/APP/image/defaultHead.png"> Contact Person：Brendon
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent3" data-tab="third" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.0397948620125!2d120.43728571531052!3d23.49507608471589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e95d6f67dea23%3A0xa808ffb15aadf16a!2zNjAw5ZiJ576p5biC6KW_5Y2A5LiW6LOi6Lev5LiA5q61MjUw6Jmf!5e0!3m2!1szh-TW!2stw!4v1540879754947"
+            width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<div id="AllContent4" data-tab="four" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts primary card" style="bottom: 20px">
+        <div class="content">
+            <div class="header">Customer Info</div>
+            <div class="description">
+                <div class="ts form">
+                    <div class="ts mini form">
+                        <div class="two fields">
+                            <div class="inline field">
+                                <div>ID：<p style="display: inline">402055</p></div>
+                            </div>
+                            <div class="inline field">
+                                <div>tax ID：<p style="display: inline"></p></div>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="inline field">
+                                <div>Company Address：<p style="display: inline">2512 Laurel Lee</p></div>
+                            </div>
+                            <div class="inline field">
+                                <div>Company Website：<p style="display: inline"></p></div>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="inline field">
+                                <div>Pay：<p style="display: inline">- Credit Card -</p></div>
+                            </div>
+                            <div class="inline field">
+                                <div>Tel：<p style="display: inline">04-22634639</p></div>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="inline field">
+                                <div>Contact Person：<p style="display: inline">Rylee</p></div>
+                            </div>
+                            <div class="inline field">
+                                <div>Job Title：<p style="display: inline"></p></div>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="inline field">
+                                <div>Gender：<p style="display: inline">E</p></div>
+                            </div>
+                            <div class="inline field">
+                                <div>Contact Tel：<p style="display: inline"></p></div>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="inline field">
+                                <div>Business Hours：<p style="display: inline"></p></div>
+                            </div>
+                            <div class="inline field">
+                                <div>Notes：<p style="display: inline"></p></div>
+                            </div>
+                        </div>
+                        <div class="three fields">
+                            <div class="inline field">
+                                <a href="mailto:shaanhonq@gmail.com" class="ts link small image" style="width: 10%">
+                                    <img src="APIUrl/APP/image/EMAIL.png"/>
+                                </a>
+                                <a>shaanhonq@gmail.com</a>
+                            </div>
+                            <div class="inline field">
+                                <a target="_blank" href="http://m.me/BCcurator" class="ts link small image" style="width: 10%">
+                                    <img src="APIUrl/APP/image/FB.png"/>
+                                </a>
+                                <a target="_blank" href="http://m.me/BCcurator" >http://m.me/BCcurator</a>
+                            </div>
+                            <div class="inline field">
+                                <a target="_blank" href="https://line.me/R/ti/p/%40pkg4009j" class="ts link small image" style="width: 10%">
+                                    <img src="APIUrl/APP/image/LINE.png"/>
+                                </a>
+                                <a target="_blank" href="https://line.me/R/ti/p/%40pkg4009j" >https://line.me/R/ti/p/%40pkg4009j</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="MainMenu" class="ts mini borderless bottom fixed evenly divided labeled icon menu">
+    <a id="MainMenu_1" data-tab="first" data-tab-group="main" class="active item">
+        <i class="star icon"></i>
+        BillBoard
+    </a>
+    <a id="MainMenu_4" data-tab="ten" data-tab-group="main" class="item disabled">
+        <i class="compass icon"></i>
+        Maintenance
+    </a>
+    <a id="MainMenu_3" data-tab="six" data-tab-group="main" class="item disabled">
+        <i class="browser icon"></i>
+        Products
+    </a>
+    <a id="MainMenu_2" data-tab="second" data-tab-group="main" class="item disabled">
+        <i class="compass icon"></i>
+        Customer
+    </a>
+</div>
+<div id="AllContent5" data-tab="five" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts primary card" style="bottom: 20px">
+        <div class="content">
+            <div class="header">Receivable</div>
+            <div class="description">
+                <div id="ARCus">402055 - Hale Piers</div>
+                <div id="ARTable" class="ts form" style="overflow: auto;height: 400px;">
+                    <div class="ts mini form">
+                        No Receivable
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent6" data-tab="six" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts stackable grid" style="bottom: 20px;width: 80%;text-align: center;left: 10%;">
+    <div id="Itemdefault" class="ts primary card" style="bottom: 20px;display: none;">
+        <div class="content">
+            <div class="header">Product List</div>
+            <div class="description">
+                <div class="ts form">
+                    <div class="ts mini form">
+                        No Products
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div id="Item_1" class="four wide column" >
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        0002 - Product1 <i class="image icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Company Stock：</p><p style="display: inline;">30 Quantity 15 PCS</p><br>
+                    <p style="display: inline;">Sales Stock：</p><div class="ts error input" style="display: inline;"><input type="text" placeholder="0" value="0" style="width: 28%;">Quantity<input type="text" placeholder="0" value="-5" style="width: 28%;">PCS</div>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <button class="ts icon button"><i class="save icon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Item_2" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        0003 - Product2 <i class="image icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Company Stock：</p><p style="display: inline;">20 Quantity 5 PCS</p><br>
+                    <p style="display: inline;">Sales Stock：</p><div class="ts input" style="display: inline;"><input type="text" placeholder="0" value="0" style="width: 28%;">Quantity<input type="text" placeholder="0" value="0" style="width: 28%;">PCS</div>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <button class="ts icon button"><i class="save icon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Item_3" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        E 09 - Product3 <i class="image icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Company Stock：</p><p style="display: inline;">10 Quantity 15 PCS</p><br>
+                    <p style="display: inline;">Sales Stock：</p><div class="ts input" style="display: inline;"><input type="text" placeholder="0" value="0" style="width: 28%;">Quantity<input type="text" placeholder="0" value="15" style="width: 28%;">PCS</div>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <button class="ts icon button"><i class="save icon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Item_4" class="four wide column">
+            <div class="ts card">
+                <div class="image">
+                    <img src="APIUrl/APP/image/defaultPic.png">
+                    <div class="header">
+                        H 04-1 - Product4 <i class="image icon"></i>
+                    </div>
+                </div>
+                <div class="content" style="text-align: left">
+                    <p style="display: inline;">Company Stock：</p><p style="display: inline;">5 Quantity 2 PCS</p><br>
+                    <p style="display: inline;">Sales Stock：</p><div class="ts error input" style="display: inline;"><input type="text" placeholder="0" value="0" style="width: 28%;">Quantity<input type="text" placeholder="0" value="-2" style="width: 28%;">PCS</div>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <button class="ts icon button"><i class="save icon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent7" data-tab="seven" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts primary card" style="bottom: 20px">
+        <div class="content">
+            <div class="header">Order State</div>
+            <div class="description">
+                <div id="OrderCus">402055 - Customer1</div>
+                <div id="OrderTable" class="ts form" style="overflow: auto;height: 400px;">
+                    <div class="ts mini form">
+                        No Orders
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent8" data-tab="eight" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts primary card" style="bottom: 20px">
+        <div class="content">
+            <div class="header">Sales Orders<div class="right floated author">Number：<div id="orderID" style="display: inline;">2537</div></div></div>
+            <div class="description">
+                <div id="BusinessCus">402055 - Customer1</div>
+                <div id="BusinessTable" class="ts form" style="overflow: auto;height: 400px;">
+                    <div class="ts mini form">
+                        No Products
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent9" data-tab="nine" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <div class="ts primary card" style="bottom: 20px">
+        <div class="content">
+            <div class="header">Delivery Orders<div class="right floated author">Number：<div id="ReplenishmentID" style="display: inline;">2537</div></div></div>
+            <div class="description">
+                <div id="ReplenishmentTable" class="ts form" style="overflow: auto;height: 400px;">
+                    <div class="ts mini form">
+                        No Orders
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AllContent10" data-tab="ten" data-tab-group="main" class="ts bottom attached tab segment" style="height: 100%">
+    <select id="portChoice" class="ts basic inverted dropdown" style="width: 100%">PortSelectBox</select>
+    <div class="ts labeled input" style="width:100%;">
+        <div class="ts label">
+            Baudrate：
+        </div>
+        <input id="baudrate" type="text" placeholder="Connect Port" style="width: 100%;">
+        <button class="ts primary basic button" onclick=printGcode(document.getElementById("portChoice").value,"",document.getElementById("baudrate").value);>Read</button>
+    </div>
+    <div class="ts resizable input" style="width: 100%;height: 150px">
+        <textarea id="inputG_code" placeholder="Gcode..."  style="width: 100%;height: 100%"></textarea>
+    </div>
+    <div class="ts fluid bottom attached buttons" style="width: 100%;">
+        <div class="ts positive button" onclick=printGcode(document.getElementById("portChoice").value,document.getElementById("inputG_code").value,document.getElementById("baudrate").value);>Send Code</div>
+        <div class="ts inverted button" ><label for="GcodeFile">Open File</label></div><input id="GcodeFile" type="file" onchange=printGcode(document.getElementById("portChoice").value,"file",document.getElementById("baudrate").value); style="display:none;">
+        <div class="ts negative button" onclick=document.getElementById("inputG_code").value="";document.getElementById("inputG_code").placeholder="Gcode...";>cancel</div>
+    </div>
+    <div id="systemMsg" class="ts inverted segment" style="width: 100%;height: 230px;overflow: auto;">
+        <div>serialPort@ Vikinss$ </div>
+    </div>
+</div>
+<div class="ts modals dimmer">
+    <dialog id="closableModal" class="ts closable tiny modal" style="height: 100%">
+        <div class="header">
+            <div class="sub header" style="font-size: 15px;">Company：
+                <select class="ts basic dropdown">
+                    <option>Taiwan</option>
+                    <option>United States</option>
+                </select>
+            </div>
+        </div>
+        <div class="content" style="height: 76%;">
+            <div class="ts vertical fluid inputs">
+                <div class="ts input">
+                    <input type="text" placeholder="Account">
+                </div>
+                <div class="ts input">
+                    <input type="password" placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <div class="actions" style="text-align: center;">
+            <button class="ts positive button" onclick="Login('in');">
+                Login
+            </button>
+            <button class="ts deny button" onclick="CloseModal();">
+                Close
+            </button>
+        </div>
+    </dialog>
+</div>
+</body>
+</html>
