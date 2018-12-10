@@ -34,7 +34,6 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
         settings.baudrate = undefined;
         consoleAndPrint(" No Baudrate passed for serial port. Exiting",true);
     }
-
     if(GcodeUrl){
         settings.printFile = GcodeUrl;
         //console.log(settings.printFile);
@@ -58,7 +57,7 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
             });
         }else{
             printCommands = GCODE.deconstruct(settings.printFile);
-            console.log("Code Send : "+printCommands);
+            console.log("Code Send : "+JSON.stringify(printCommands));
         }
         printPosition = 0;
         return printerCommand(GCODE.reconstruct(printCommands[printPosition]));
@@ -70,6 +69,9 @@ function printGcode(Port,GcodeUrl,baudrate,speed){
 }
 
 function printerCommand(comm){
+    if(sp){
+        sp.close();
+    }
     SerialPort = serialport.SerialPort;
     Readline = serialport.parsers.Readline;
     sp = new serialport(settings.serialPort, {
@@ -77,22 +79,31 @@ function printerCommand(comm){
         baudrate : settings.baudRate,
         ///brk:true,cts:true,dsr:true,dtr:true,rts:true
     });
-         sp.write(comm + "\n", function(err, res){
+    //////////////////
+    sp.on('open', function () {
+            sp.write(comm + "\n", function(err){
             if (err) {
                 consoleAndPrint(comm+'...'+'Error on write: '+err.message,false);
                 setTimeout(printerCommand(comm), 50);
             }else{
                 printPosition += 1;
                 consoleAndPrint(comm+'...'+'Success on write',false);
-                if(printPosition < printCommands.length){
+                //consoleAndPrint('Response:'+results,false);
+                if(printPosition < printCommands.length) {
                     printerCommand(GCODE.reconstruct(printCommands[printPosition]));
                 }else{
-                    console.log('Task finish');
-                    printerClose(false);
-                    printerRead();
+                    //printerClose(false);
+                    consoleAndPrint('Finish',true);
                 }
             }
         });
+    });
+    //sp.on('error',function(err){
+        //printerClose(false);
+        //consoleAndPrint(err.message);
+    //});
+    ////測試
+
 }
 var CheckIfNotChange = false;
 var CheckifChangeNum = 0;
@@ -116,15 +127,16 @@ function printerRead(){
 }
 
 function printerClose(type){
-    sp.close(function (err) {
-        if(err){
-            consoleAndPrint('$Close'+err.message,false);
-        }else{
-            if(type == true){
-                //consoleAndPrint('$Close');
+    if(sp){
+        sp.close(function (err) {
+            if(err){
+                consoleAndPrint('$Close'+err.message,false);
+            }else{
+                consoleAndPrint('',true);
             }
-        }
-    });
+        });
+    }
+
 }
 function consoleAndPrint(printText,state){
     //console.log(printText);
@@ -134,7 +146,9 @@ function consoleAndPrint(printText,state){
         Main.printResponse(printText.toString());
     }
 }
-
+function ascii (ASCtext) {
+    return ASCtext.charCodeAt(0);
+}
 //process.on('exit', function() {
 //    console.log("Issuing Stop Command");
 //    printerCommand("M112");

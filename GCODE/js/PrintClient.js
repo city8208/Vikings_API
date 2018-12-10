@@ -1,9 +1,5 @@
-//Version 20181203 V 4
+//Version 20181210 V 5
 
-function onload() {
-    ts('.icon.menu .item').tab();
-    ts('.tabbed.menu .item').tab();
-}
 function callToggle() {
     if(document.getElementById("rightTable").classList.contains("visible") == true){
         document.getElementById("rightTable").classList.remove("visible");
