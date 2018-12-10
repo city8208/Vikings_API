@@ -3,7 +3,7 @@
 var serialport = require("serialport"),
     fs = require('fs'),
     ///argv = require('optimist').argv,
-    Main = require('../Vikinss_API.js');
+    Main = require('../Vikings_API.js');
     GCODE = require('./module.js');
     var printCommands = [],
     printPosition = 0;
