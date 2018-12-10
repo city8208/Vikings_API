@@ -34,12 +34,12 @@ npm install request-ip --unsafe-perm
 
 ####  Step4：Go Website Folder to restart Step2 and Step3 again
 ```
-cd Vikinss_API
+cd Vikings_API
 ```
 
-####  Step5：Start Vikinss_API and hope you like 
+####  Step5：Start Vikings_API and hope you like 
 ```
-node Vikinss_API.js
+node Vikings_API.js
 ```
 
 ####  Precautions：If you want to close this mode.Just stop it by this：
