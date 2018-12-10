@@ -51,7 +51,7 @@ if(argv.port){
                 function printResponse(PrintResponse) {
                     if(PrintResponse != undefined ){
                         if(PrintResponse.length > 10){
-                            res.write('<br>serialPort@ Vikinss$');
+                            res.write('<br>serialPort@ Vikings$');
                         }
                         res.write(PrintResponse.split("$Close")[0]);
                         if(PrintResponse.indexOf("$Close") != -1){
@@ -105,7 +105,7 @@ if(argv.port){
                                 ///console.log('G-code:');
                             if(params.baudrate != ''){
                                 for(Gcode_Arrayi = 0;Gcode_Arrayi <Gcode_Array.length;Gcode_Arrayi++){
-                                    res.write('<br>serialPort@ Vikinss$ Code:');
+                                    res.write('<br>serialPort@ Vikings$ Code:');
                                     res.write(Gcode_Array[Gcode_Arrayi]);
                                 }
                                 PrintCode.printGcode(params.Port,params.GcodeUrl.replace(new RegExp('--','g'),'\n'),params.baudrate,params.speed);
@@ -130,9 +130,9 @@ if(argv.port){
                                 '<head>\n' +
                                 '    <meta charset="UTF-8">\n' +
                                 '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
-                                '    <title>Vikinss</title>\n' +
+                                '    <title>Vikings</title>\n' +
                                 '    <!-- Tocas UI：CSS 與元件 -->\n' +
-                                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script><script src="http://'+req.headers.host.split(":")[0]+'/Vikinss_API/GCODE/js/PrintClient.js"></script>\n' +
+                                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script><script src="http://'+req.headers.host.split(":")[0]+'/Vikings_API/GCODE/js/PrintClient.js"></script>\n' +
                                 '</head>\n' +
                                 '<body onload="onload();">\n' +
                                 '<div class="ts menu" style="height: 80px;">\n' +
@@ -266,7 +266,7 @@ if(argv.port){
                                     '    <div class="ts negative button" onclick=document.getElementById("inputG_code").value="";document.getElementById("inputG_code").placeholder="Gcode...";>cancel</div>\n' +
                                     '</div>\n' +
                                     '<div id="systemMsg" class="ts inverted segment" style="width: 100%;height: 230px;overflow: auto;">\n' +
-                                    '    <div>serialPort@ Vikinss$ </div>\n' +
+                                    '    <div>serialPort@ Vikings$ </div>\n' +
                                     '</div>\n' +
                                 '</div>\n' +
                                 '<div id="AllContent3" data-tab="third"  data-tab-group="main"  class="ts bottom attached tab segment" style="height: 100%">\n' +
