@@ -125,9 +125,9 @@ if(argv.port){
                                 if(err){
                                     res.write(err);
                                 }else{
-                                    //res.write("http://"+req.headers.host.split(":")[0]+"/3dplus/Vikings_API/APP/");
+                                    //res.write("http://"+req.headers.host.split(":")[0]+"/Vikings_API/APP/");
                                     var ReturnString =data.toString();
-                                    res.write(ReturnString.replace(/APIUrl/g,"http://"+req.headers.host.split(":")[0]+"/3dplus/Vikings_API").replace(/PortSelectBox/g,PortSelectBox));
+                                    res.write(ReturnString.replace(/APIUrl/g,"http://"+req.headers.host.split(":")[0]+"/Vikings_API").replace(/PortSelectBox/g,PortSelectBox));
                                 }
                                 res.end();
                             });
